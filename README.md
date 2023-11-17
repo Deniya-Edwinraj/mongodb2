@@ -106,4 +106,46 @@
 ``3``
 
 **6.Insert one document into the customerdetails collection.**
-``# mongodb2
+``
+**output**
+``
+
+**7. Update city=SriLanka to John.**
+``
+**output**
+``
+
+**8. Remove the customer from Tokyo.**
+``
+**output**
+``
+
+**9.  Find customers not from Los Angeles.**
+``
+**output**
+``
+
+**10.Find the customers who are older than age 25.**
+``
+**output**
+``
+
+**11.Retrieve the males who are less than 25.**
+``
+**output**
+``
+
+**12.Update Francis age to 35, if Francis is not available upsert.**
+``
+**output**
+``
+
+**13.Retrieve males who are younger than 30 and older than25.**
+``
+**output**
+``
+
+**14.Find a customer who is lesser than or equal to 23.**
+``
+**output**
+``
