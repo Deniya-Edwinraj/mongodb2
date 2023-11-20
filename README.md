@@ -106,46 +106,165 @@
 ``3``
 
 **6.Insert one document into the customerdetails collection.**
-``
+``db.customerdetails.insertOne({
+...   firstName: 'John',
+...   lastName: 'Doe',
+...   email: 'john.doe@example.com'})``
+
 **output**
-``
+``{
+  acknowledged: true,
+  insertedId: ObjectId("655bce23b4fb611e9f0740bc")
+}``
 
 **7. Update city=SriLanka to John.**
-``
+``db.customerdetails.updateOne({ city: 'SriLanka' },{ $set: { city: 'John' } } )``
+
 **output**
-``
+``{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}``
 
 **8. Remove the customer from Tokyo.**
-``
+``db.customerdetails.deleteOne({ city: 'Tokyo' })``
+
 **output**
-``
+``{ acknowledged: true, deletedCount: 1 }``
 
 **9.  Find customers not from Los Angeles.**
-``
+``db.customerdetails.find({ city: { $ne: 'Los Angeles' } })``
+
 **output**
-``
+``[
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbded"),
+    name: 'John',
+    age: 25,
+    gender: 'Male',
+    city: 'New york'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdee"),
+    name: 'Emily',
+    age: 22,
+    gender: 'Male',
+    city: 'London'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdef"),
+    name: 'Daniel',
+    age: 28,
+    gender: 'Male',
+    city: 'Sydney'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf0"),
+    name: 'Sophia',
+    age: 24,
+    gender: 'Female',
+    city: 'Paris'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf1"),
+    name: 'William ',
+    age: 26,
+    gender: 'Male',
+    city: 'Chicago'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf3"),
+    name: 'Benjamin',
+    age: 27,
+    gender: 'Male',
+    city: 'Toronto'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf4"),
+    name: 'Mila',
+    age: 29,
+    gender: 'Female',
+    city: 'Berlin'
+  },
+  {
+    _id: ObjectId("655bce23b4fb611e9f0740bc"),
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com'
+  }
+]``
 
 **10.Find the customers who are older than age 25.**
-``
+``db.customerdetails.find({ age: { $gt: 25 } })``
+
 **output**
-``
+``[
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdef"),
+    name: 'Daniel',
+    age: 28,
+    gender: 'Male',
+    city: 'Sydney'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf1"),
+    name: 'William ',
+    age: 26,
+    gender: 'Male',
+    city: 'Chicago'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf3"),
+    name: 'Benjamin',
+    age: 27,
+    gender: 'Male',
+    city: 'Toronto'
+  },
+  {
+    _id: ObjectId("655736fdbf54fabdde2bbdf4"),
+    name: 'Mila',
+    age: 29,
+    gender: 'Female',
+    city: 'Berlin'
+  }
+]``
 
 **11.Retrieve the males who are less than 25.**
-``
+``db.customerdetails.find({ gender: 'male', age: { $lt: 25 } })``
+
 **output**
-``
+``    ``
 
 **12.Update Francis age to 35, if Francis is not available upsert.**
-``
+``db.customerdetails.updateOne( { firstName: 'Francis' },   { $set: { age: 35 } },{ upsert: true } )``
+
 **output**
-``
+``{
+  acknowledged: true,
+  insertedId: ObjectId("655bd19bf96477c0402a7ed9"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}``
 
 **13.Retrieve males who are younger than 30 and older than25.**
-``
+``db.customerdetails.find({ gender: 'male', age: { $gt: 25, $lt: 30 } })``
+
 **output**
-``
+`` ``
 
 **14.Find a customer who is lesser than or equal to 23.**
-``
+``db.customerdetails.findOne({ age: { $lte: 23 } })``
+
 **output**
-``
+``{
+  _id: ObjectId("655736fdbf54fabdde2bbdee"),
+  name: 'Emily',
+  age: 22,
+  gender: 'Male',
+  city: 'London'
+}``
+
